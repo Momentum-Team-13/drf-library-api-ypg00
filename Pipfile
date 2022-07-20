@@ -5,15 +5,15 @@ name = "pypi"
 
 [packages]
 django = "*"
-django-extensions = "*"
-django-debug-toolbar = "*"
 django-environ = "*"
+django-extensions = "*"
 django-registration-redux = "*"
+django-debug-toolbar = "*"
 psycopg2-binary = "*"
+django-on-heroku = "*"
 gunicorn = "*"
 djangorestframework = "*"
 django-filter = "*"
-django-on-heroku = "*"
 
 [dev-packages]
 
