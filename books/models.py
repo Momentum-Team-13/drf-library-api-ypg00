@@ -42,20 +42,35 @@ class TrackedBook(BaseModel):
         (READ, 'Read'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='tracked_book')
-    book = models.ForeignKey(Book, on_delete=models.SET_NULL, related_name='tracked_book')
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        related_name='tracked_book')
+    book = models.ForeignKey(
+        Book, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        related_name='tracked_book')
     status = models.CharField(
         max_length=1,
         choices=STATUS_CHOICES,
-        default=WANT_TO_READ,
-    )
+        default=WANT_TO_READ,)
 
     def __str__(self):
         return f'{self.username} {self.book}'
 
 class Note(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='note')
-    book = models.ForeignKey(Book, on_delete=models.SET_NULL, related_name='note')
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        related_name='note')
+    book = models.ForeignKey(
+        Book, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        related_name='note')
     title = models.CharField(max_length=100)
     note = models.TextField(null=True, blank=True)
     public = models.BooleanField(default=False)
