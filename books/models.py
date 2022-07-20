@@ -53,7 +53,7 @@ class TrackedBook(BaseModel):
         null=True, 
         related_name='tracked_book')
     status = models.CharField(
-        max_length=1,
+        max_length=3,
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,)
 
