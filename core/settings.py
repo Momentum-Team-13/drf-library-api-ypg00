@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party
-    'django-extensions',
+    'django_extensions',
     'debug_toolbar',
     'rest_framework',
 
@@ -165,5 +165,5 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = "books.User"
 
 # Heroku
-django_on_heroku.settings(locals())
-del DATABASES["default"]["OPTIONS"]["sslmode"]
+# django_on_heroku.settings(locals())
+# del DATABASES["default"]["OPTIONS"]["sslmode"]
