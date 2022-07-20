@@ -12,6 +12,8 @@ django-registration-redux = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
 djangorestframework = "*"
+django-filter = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 

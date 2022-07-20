@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import environ
+import django_on_heroku
 
 env = environ.Env(
     # set casting, default value
@@ -35,11 +36,11 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'registration',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'rest_framework',
+    'django_filters',
 
     # Apps
     'books',
@@ -165,5 +167,5 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = "books.User"
 
 # Heroku
-# django_on_heroku.settings(locals())
-# del DATABASES["default"]["OPTIONS"]["sslmode"]
+django_on_heroku.settings(locals())
+del DATABASES["default"]["OPTIONS"]["sslmode"]
