@@ -23,6 +23,14 @@ class Book(BaseModel):
     publication_date = models.DateField()
     featured = models.BooleanField(default=False)
 
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=["title", "author"], name="unique_book")
+        ]
+    
+    def __str__(self):
+        return self.title
+
 class TrackedBook(BaseModel):
     # Status Choices
     WANT_TO_READ = 'WTR'
@@ -34,17 +42,23 @@ class TrackedBook(BaseModel):
         (READ, 'Read'),
     ]
 
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    book = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='tracked_book')
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, related_name='tracked_book')
     status = models.CharField(
         max_length=1,
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,
     )
 
+    def __str__(self):
+        return f'{self.username} {self.book}'
+
 class Note(BaseModel):
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    book = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='note')
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, related_name='note')
     title = models.CharField(max_length=100)
     note = models.TextField(null=True, blank=True)
     public = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.note_title
