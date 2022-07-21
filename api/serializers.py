@@ -12,7 +12,6 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
 class BookSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Book
         fields = (
@@ -21,4 +20,23 @@ class BookSerializer(serializers.ModelSerializer):
             'genre',
             'publication_date',
             'featured',
+        )
+
+class TrackedBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackedBook
+        fields = (
+            'user',
+            'book',
+            'status',
+        )
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = (
+            'book',
+            'title',
+            'note',
+            'public',
         )
