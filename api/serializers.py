@@ -25,6 +25,8 @@ class BookSerializer(serializers.ModelSerializer):
         ]
 
 class TrackedBookSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+    
     class Meta:
         model = TrackedBook
         fields = [
