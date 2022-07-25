@@ -21,7 +21,7 @@ class Book(BaseModel):
     author = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     publication_date = models.DateField()
-    featured = models.BooleanField(default=False)
+    featured = models.BooleanField()
 
     class Meta:
         constraints = [
@@ -56,6 +56,11 @@ class TrackedBook(BaseModel):
         max_length=3,
         choices=STATUS_CHOICES,
         default=WANT_TO_READ,)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'book'], name='unique_book_tracker')
+        ]
 
     def __str__(self):
         return f'{self.username} {self.book}'
